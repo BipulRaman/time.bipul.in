@@ -1,4 +1,4 @@
-/* Redesigned UI from scratch */
+/* Removed unused CSS classes */
 
 /* General styles */
 body {
@@ -53,13 +53,6 @@ body {
     width: 100%;
     margin: 10px 0;
     cursor: pointer;
-    position: relative;
-    z-index: 1;
-}
-
-/* Ensure tappable elements have enough spacing */
-.clock-container select, .clock-container button {
-    margin-bottom: 15px;
 }
 
 /* Adjust dropdown layout */
@@ -90,8 +83,7 @@ body {
 
 /* Updated separator to ensure it spans the full width of the card */
 .separator {
-    width: 100%; /* Adjust for container padding */
-    margin-left: -20px; /* Offset to align with card edges */
+    width: 100%;
     height: 2px;
     background-color: #ccc;
     margin: 20px 0;

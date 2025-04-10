@@ -48,7 +48,7 @@ function updateClockDifference() {
     const isDST1 = new Date().toLocaleString('en-US', { timeZone: tzMap[t1].zone, timeZoneName: 'short' }).includes('DT');
     const isDST2 = new Date().toLocaleString('en-US', { timeZone: tzMap[t2].zone, timeZoneName: 'short' }).includes('DT');
 
-    const dstFactor = isDST1 || isDST2 ? " (Daylight Saving Time Applied)" : "";
+    const dstFactor = isDST1 || isDST2 ? " (* Daylight Saving)" : "";
 
     document.getElementById('clock2-difference').textContent = `Difference: ${clockDifference.toFixed(1)} hours${dstFactor}`;
 }
@@ -114,21 +114,6 @@ function updateDateDisplay() {
     dateElement.textContent = formattedDate;
 }
 
-// Function to check and display daylight savings information
-function displayDaylightSavings() {
-    const now = new Date();
-    const jan = new Date(now.getFullYear(), 0, 1);
-    const jul = new Date(now.getFullYear(), 6, 1);
-    const stdTimezoneOffset = Math.max(jan.getTimezoneOffset(), jul.getTimezoneOffset());
-    const isDaylightSavings = now.getTimezoneOffset() < stdTimezoneOffset;
-
-    const daylightSavingsElement = document.createElement('div');
-    daylightSavingsElement.className = 'daylight-savings';
-    daylightSavingsElement.textContent = isDaylightSavings ? 'Daylight Savings is currently applied.' : 'Daylight Savings is not applied.';
-
-    document.body.appendChild(daylightSavingsElement);
-}
-
 document.addEventListener('DOMContentLoaded', () => {
     // Populate dropdowns dynamically using tzMap
     const populateDropdown = (dropdownId) => {
@@ -177,5 +162,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     updateDateDisplay();
-    displayDaylightSavings();
 });
