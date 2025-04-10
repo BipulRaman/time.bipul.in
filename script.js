@@ -22,6 +22,12 @@ function updateClock(clockId, tzSelectId) {
     document.getElementById(clockId).textContent = now;
 }
 
+function updateDate(dateId, tzSelectId) {
+    const timezone = tzMap[document.getElementById(tzSelectId).value].zone;
+    const now = new Date().toLocaleDateString('en-US', { timeZone: timezone, year: 'numeric', month: 'long', day: 'numeric', weekday: 'short' });
+    document.getElementById(dateId).textContent = now;
+}
+
 function updateClockDifference() {
     const t1 = document.getElementById('timezone1').value;
     const t2 = document.getElementById('timezone2').value;
@@ -50,11 +56,13 @@ function updateClockDifference() {
 function attachTimezoneChangeListeners() {
     document.getElementById('timezone1').addEventListener('change', () => {
         updateClock('clock1', 'timezone1');
+        updateDate('date1', 'timezone1');
         updateClockDifference();
     });
 
     document.getElementById('timezone2').addEventListener('change', () => {
         updateClock('clock2', 'timezone2');
+        updateDate('date2', 'timezone2');
         updateClockDifference();
     });
 }
@@ -65,6 +73,11 @@ function startClocks() {
         updateClock('clock2', 'timezone2');
         updateClockDifference();
     }, 1000);
+}
+
+function startDateUpdates() {
+    setInterval(() => updateDate('date1', 'timezone1'), 1000);
+    setInterval(() => updateDate('date2', 'timezone2'), 1000);
 }
 
 function getURLParams() {
@@ -88,6 +101,32 @@ function normalizeTimezone(timezone) {
         return "Asia/Kolkata";
     }
     return timezone;
+}
+
+// Function to update the date display
+function updateDateDisplay() {
+    const dateElement = document.getElementById('date-display');
+    const now = new Date();
+
+    const options = { year: 'numeric', month: 'long', day: 'numeric', weekday: 'short' };
+    const formattedDate = now.toLocaleDateString('en-US', options);
+
+    dateElement.textContent = formattedDate;
+}
+
+// Function to check and display daylight savings information
+function displayDaylightSavings() {
+    const now = new Date();
+    const jan = new Date(now.getFullYear(), 0, 1);
+    const jul = new Date(now.getFullYear(), 6, 1);
+    const stdTimezoneOffset = Math.max(jan.getTimezoneOffset(), jul.getTimezoneOffset());
+    const isDaylightSavings = now.getTimezoneOffset() < stdTimezoneOffset;
+
+    const daylightSavingsElement = document.createElement('div');
+    daylightSavingsElement.className = 'daylight-savings';
+    daylightSavingsElement.textContent = isDaylightSavings ? 'Daylight Savings is currently applied.' : 'Daylight Savings is not applied.';
+
+    document.body.appendChild(daylightSavingsElement);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -126,6 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     attachTimezoneChangeListeners();
     startClocks();
+    startDateUpdates();
 
     // Update URL params when dropdown values change
     document.getElementById('timezone1').addEventListener('change', () => {
@@ -135,4 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('timezone2').addEventListener('change', () => {
         updateURLParams(document.getElementById('timezone1').value, document.getElementById('timezone2').value);
     });
+
+    updateDateDisplay();
+    displayDaylightSavings();
 });

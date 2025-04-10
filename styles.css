@@ -9,7 +9,7 @@ body {
     margin: 0;
     padding: 0;
     background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
-    font-family: 'Arial', sans-serif;
+    font-family: 'Consolas', monospace;
     color: #333;
 }
 
@@ -19,7 +19,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 40px;
+    padding: 20px;
     max-width: 400px;
     width: 100%;
     background: #ffffff;
@@ -41,7 +41,6 @@ body {
     font-size: 3rem;
     font-weight: bold;
     color: #333;
-    margin: 10px 0;
 }
 
 /* Dropdown styling */
@@ -89,9 +88,10 @@ body {
     background: #357ab8;
 }
 
-/* Add a separator between clocks */
+/* Updated separator to ensure it spans the full width of the card */
 .separator {
-    width: 100%;
+    width: 100%; /* Adjust for container padding */
+    margin-left: -20px; /* Offset to align with card edges */
     height: 2px;
     background-color: #ccc;
     margin: 20px 0;
@@ -101,6 +101,13 @@ body {
 #clock2-difference {
     font-size: 0.9rem;
     color: #00796b;
+    margin-top: 10px;
+}
+
+/* Daylight savings information styling */
+.daylight-savings {
+    font-size: 1rem;
+    color: #ff5722;
     margin-top: 10px;
 }
 
@@ -117,6 +124,11 @@ body {
     .clock-container .clock {
         font-size: 2.5rem;
     }
+}
+
+.date-display {
+    font-size: 1.2rem;
+    color: #555;
 }
 
 /* Improve layout for very small screens */
