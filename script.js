@@ -2,7 +2,7 @@ var tzMap = {
     "NZST": { zone: "Pacific/Auckland", utcGap: "+12:00" },
     "AEST": { zone: "Australia/Sydney", utcGap: "+10:00" },
     "JST": { zone: "Asia/Tokyo", utcGap: "+09:00" },
-    "IST": { zone: "Asia/Calcutta", utcGap: "+05:30" },
+    "IST": { zone: "Asia/Kolkata", utcGap: "+05:30" },
     "EET": { zone: "Europe/Helsinki", utcGap: "+02:00" },
     "CET": { zone: "Europe/Berlin", utcGap: "+01:00" },
     "GMT": { zone: "Europe/London", utcGap: "+00:00" },
