@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Zone Clocks</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="clock-container">
+        <div class="timezone-select-container">
+            <div>
+                <select id="timezone1">
+                    <!-- Standard time zones only -->
+                    <option value="UTC">UTC +0:00 Coordinated Universal Time</option>
+                    <option value="America/New_York">EST -5:00 Eastern Standard Time</option>
+                    <option value="Europe/London">GMT +0:00 Greenwich Mean Time</option>
+                    <option value="Asia/Tokyo">JST +9:00 Japan Standard Time</option>
+                    <option value="Asia/Kolkata">IST +5:30 India Standard Time</option>
+                    <option value="America/Los_Angeles">PST -8:00 Pacific Standard Time</option>
+                </select>
+                <div id="clock1" class="clock"></div>
+            </div>
+            <div class="separator"></div>
+            <div>
+                <select id="timezone2">
+                    <!-- Standard time zones only -->
+                    <option value="UTC">UTC +0:00 Coordinated Universal Time</option>
+                    <option value="America/New_York">EST -5:00 Eastern Standard Time</option>
+                    <option value="Europe/London">GMT +0:00 Greenwich Mean Time</option>
+                    <option value="Asia/Tokyo">JST +9:00 Japan Standard Time</option>
+                    <option value="Asia/Kolkata">IST +5:30 India Standard Time</option>
+                    <option value="America/Los_Angeles">PST -8:00 Pacific Standard Time</option>
+                </select>
+                <div id="clock2" class="clock"></div>
+            </div>
+            <div id="clock2-difference"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
