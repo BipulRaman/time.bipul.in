@@ -82,6 +82,14 @@ function updateURLParams(t1, t2) {
     window.history.replaceState({}, '', `${window.location.pathname}?${params.toString()}`);
 }
 
+// Normalize timezone names to handle browser differences
+function normalizeTimezone(timezone) {
+    if (timezone === "Asia/Calcutta") {
+        return "Asia/Kolkata";
+    }
+    return timezone;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     // Populate dropdowns dynamically using tzMap
     const populateDropdown = (dropdownId) => {
@@ -102,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Detect user's timezone and set it as default if params are not defined
     const { t1, t2 } = getURLParams();
     if (!t1 && !t2) {
-        const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        const userTimezone = normalizeTimezone(Intl.DateTimeFormat().resolvedOptions().timeZone);
         const userTzKey = Object.keys(tzMap).find(key => tzMap[key].zone === userTimezone);
 
         if (userTzKey) {
